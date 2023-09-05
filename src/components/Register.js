@@ -205,14 +205,14 @@ export default function Register() {
                     email: data.step1.email,
                     mobile: data.step1.mobile,
                     image: imageId,
-                    registrationAdress: AdressId,
-                    registrationSubject: SubjectId,
+                    registrationadressId: AdressId,
+                    registrationsubjectId: SubjectId,
                 },
             }
 
             if (AdressId && SubjectId && imageId && orderNumber) {
-                await postDataRegistration(finalData)
-                handleNext()
+                const data = await postDataRegistration(finalData)
+                data && handleNext()
             }
         } catch (err) {
             console.error(err)
