@@ -18,7 +18,6 @@ export const UseDataHookProvider = ({ children }) => {
             semester: '',
             finishedCredits: 0,
             city: '',
-            OtherReason: '',
             block: 0,
             street: '',
             house: '',
@@ -29,6 +28,7 @@ export const UseDataHookProvider = ({ children }) => {
         },
         step2: {
             reason: '',
+            OtherReason: '',
             subjects: [],
         },
     })

@@ -55,8 +55,6 @@ export default function Register() {
 
     const CheckStepOne = () =>
         areObjectPropertiesNotEmptyStrings(data.step1) &&
-        +data.step1.finishedCredits >= 80 &&
-        +data.step1.credits < 14 &&
         data.step1.acceptEntry === true
 
     const CheckStepTwo = () =>
@@ -67,7 +65,7 @@ export default function Register() {
         const max = 9999999
         const randomNumber = Math.floor(Math.random() * (max - min + 1)) + min
         setOrderNum(`${randomNumber}#`)
-        return `${randomNumber}`
+        return randomNumber.toString()
     }
 
     const postDataAdress = async (submitData) => {
@@ -294,7 +292,7 @@ export default function Register() {
                                         type="submit"
                                         sx={{ mt: 3, ml: 1 }}
                                     >
-                                        تاكيد الطلب'
+                                        تاكيد الطلب
                                     </Button>
                                 )}
 
