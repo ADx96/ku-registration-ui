@@ -8,6 +8,5 @@ export const Instance = axios.create({
     baseURL: 'https://ku-assets-api.herokuapp.com/api', // Replace with your API's base URL
     headers: {
         Authorization: `Bearer ${accessToken}`,
-        'Content-Type': 'application/json', // You can add more hea)ders as needed
     },
 })

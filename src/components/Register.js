@@ -106,19 +106,17 @@ export default function Register() {
         }
     }
 
-    // const uploadFile = async (submitData) => {
-    //     console.log(submitData)
-    //     const formData = new FormData()
-    //     formData.append('files', submitData)
-    //     console.log(formData)
-    //     try {
-    //         const { data } = await Instance.post('/upload', formData)
-    //         return data[0].id
-    //     } catch (error) {
-    //         console.error('Error:', error)
-    //         // Handle the error here
-    //     }
-    // }
+    const uploadFile = async (submitData) => {
+        const formData = new FormData()
+        formData.append('files', submitData)
+        try {
+            const { data } = await Instance.post('/upload', formData)
+            return data[0].id
+        } catch (error) {
+            console.error('Error:', error)
+            // Handle the error here
+        }
+    }
 
     function getSemester(data) {
         if (!data) {
@@ -199,7 +197,7 @@ export default function Register() {
         try {
             const AdressId = await postDataAdress(adressData)
             const SubjectId = await postDataSubject(subjectData)
-            // const imageId = await uploadFile(data.step1.image)
+            const imageId = await uploadFile(data.step1.image)
 
             const finalData = {
                 data: {
@@ -208,13 +206,13 @@ export default function Register() {
                     name: data.step1.name,
                     email: data.step1.email,
                     mobile: data.step1.mobile,
-                    image: 1,
+                    image: imageId,
                     registrationAdress: AdressId,
                     registrationSubject: SubjectId,
                 },
             }
 
-            if (AdressId && SubjectId && orderNumber) {
+            if (AdressId && SubjectId && imageId && orderNumber) {
                 await postDataRegistration(finalData)
                 handleNext()
             }
