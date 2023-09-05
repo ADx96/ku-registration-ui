@@ -19,21 +19,28 @@ import { Delete } from '@mui/icons-material'
 export default function PaymentForm() {
     const { data, setData } = useDataContext()
     const [inputValue, setInputValue] = useState('')
+    const [inputValue2, setInputValue2] = useState('')
+
     const [text, setText] = useState([])
 
     const handleInputChange = (e) => {
         setInputValue(e.target.value)
     }
+    const handleInputValue2 = (e) => {
+        setInputValue2(e.target.value)
+    }
 
     const handleAddItem = () => {
-        if (inputValue) {
-            setText((prevItems) => [...prevItems, inputValue])
+        if (inputValue && inputValue2) {
+            const newItem = { inputValue, inputValue2 }
+            setText((prevItems) => [...prevItems, newItem])
             setInputValue('')
+            setInputValue2('')
             setData((prevData) => ({
                 ...prevData,
                 step2: {
                     ...prevData.step2,
-                    subjects: [...prevData.step2.subjects, inputValue],
+                    subjects: [...prevData.step2.subjects, newItem],
                 },
             }))
         }
@@ -47,7 +54,7 @@ export default function PaymentForm() {
             ...prevItems,
             step2: {
                 ...prevItems.step2,
-                subjects: text,
+                subjects: updatedItems,
             },
         }))
     }
@@ -70,11 +77,10 @@ export default function PaymentForm() {
                 المقرر
             </Typography>
             <Grid container spacing={3}>
-                <Grid item xs={12}>
+                <Grid item xs={12} md={6}>
                     <TextField
                         required
                         onChange={handleInputChange}
-                        name="subjects"
                         id="subjects"
                         value={inputValue}
                         label="المقررات المراد التسجيل بها"
@@ -82,6 +88,20 @@ export default function PaymentForm() {
                         autoComplete="given-name"
                         variant="standard"
                     />
+                </Grid>
+                <Grid item xs={12} md={6}>
+                    <TextField
+                        required
+                        onChange={handleInputValue2}
+                        id="subjects"
+                        value={inputValue2}
+                        label="رقم المقررات "
+                        fullWidth
+                        autoComplete="given-name"
+                        variant="standard"
+                    />
+                </Grid>
+                <Grid item xs={12}>
                     <Button
                         onClick={handleAddItem}
                         variant="contained"
@@ -111,7 +131,14 @@ export default function PaymentForm() {
                                     </IconButton>
                                 }
                             >
-                                <ListItemText primary={data} />
+                                <ListItemText
+                                    secondary={'المقرر'}
+                                    primary={data.inputValue}
+                                />
+                                <ListItemText
+                                    secondary={'رقم المقرر '}
+                                    primary={data.inputValue2}
+                                />
                             </ListItem>
                         </List>
                     ))}

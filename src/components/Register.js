@@ -205,8 +205,8 @@ export default function Register() {
                     email: data.step1.email,
                     mobile: data.step1.mobile,
                     image: imageId,
-                    registrationadressId: AdressId,
-                    registrationsubjectId: SubjectId,
+                    registrationAdress: AdressId,
+                    registrationSubject: SubjectId,
                 },
             }
 
