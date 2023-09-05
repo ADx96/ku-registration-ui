@@ -118,22 +118,75 @@ export default function Register() {
         }
     }
 
+    function getSemester(data) {
+        if (!data) {
+            return
+        }
+        switch (data) {
+            case 1:
+                return 'الأول'
+            case 2:
+                return 'الثاني'
+            case 3:
+                return 'الصيفي'
+            default:
+                throw new Error('Unknown step')
+        }
+    }
+
+    function getReason(data) {
+        if (!data) {
+            return
+        }
+        switch (data) {
+            case 1:
+                return 'تعارض الوقت مع مقررات اخري'
+            case 2:
+                return 'ظروف العمل (ارفاق من يبن ذلك)'
+            case 3:
+                return 'سبب اخر'
+            default:
+                throw new Error('Unknown step')
+        }
+    }
+    function getGovernor(data) {
+        if (!data) {
+            return
+        }
+        switch (data) {
+            case 1:
+                return 'محافظة العاصمة'
+            case 2:
+                return 'محافظة حولي'
+            case 3:
+                return 'محافظة الأحمدي'
+            case 4:
+                return 'محافظة الجهراء'
+            case 5:
+                return 'محافظة الفروانية'
+            case 6:
+                return 'محافظة مبارك الكبير'
+            default:
+                throw new Error('Unknown step')
+        }
+    }
+
     const adressData = {
         data: {
             city: data.step1.city,
             block: data.step1.block,
             street: data.step1.street,
             house: data.step1.house,
-            governor: data.step1.governor,
+            governor: getGovernor(data.step1.governor),
         },
     }
 
     const subjectData = {
         data: {
             credits: data.step1.credits,
-            semester: data.step1.semester,
+            semester: getSemester(data.step1.semester),
             finishedCredits: data.step1.finishedCredits,
-            reason: data.step2.fall,
+            reason: getReason(data.step2.reason),
             subjects: data.step2.subjects,
             fall: data.step1.fall,
         },

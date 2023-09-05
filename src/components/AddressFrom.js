@@ -113,7 +113,11 @@ export default function AddressFrom() {
                 <Grid item xs={4} sm={4}>
                     <TextField
                         required
-                        error={data.step1.credits && data.step1.credits > 14}
+                        error={
+                            data.step1.credits && data.step1.credits > 14
+                                ? true
+                                : false
+                        }
                         helperText={'عدد الوحدات ييجب ان لا يكون اكثر من ١٤'}
                         type="number"
                         id="credits"
@@ -142,9 +146,9 @@ export default function AddressFrom() {
                             value={data.step1.semester}
                             fullWidth
                         >
-                            <MenuItem value={'1'}>الأول</MenuItem>
-                            <MenuItem value={'2'}>الثاني</MenuItem>
-                            <MenuItem value={'3'}>الصيفي</MenuItem>
+                            <MenuItem value={1}>الأول</MenuItem>
+                            <MenuItem value={2}>الثاني</MenuItem>
+                            <MenuItem value={3}>الصيفي</MenuItem>
                         </Select>
                     </FormControl>
                 </Grid>
@@ -169,6 +173,8 @@ export default function AddressFrom() {
                         error={
                             data.step1.finishedCredits &&
                             data.step1.finishedCredits < 80
+                                ? true
+                                : false
                         }
                         helperText={'عدد الوحدات ييجب ان تكون ٨٠ وحدة او اكثر '}
                         label="الوحدات المجتازة "
@@ -215,14 +221,12 @@ export default function AddressFrom() {
                             value={data.step1?.governor}
                             label="المحافظة"
                         >
-                            <MenuItem value={'10'}>محافظة العاصمة</MenuItem>
-                            <MenuItem value={'20'}>محافظة حولي</MenuItem>
-                            <MenuItem value={'30'}>محافظة الأحمدي</MenuItem>
-                            <MenuItem value={'40'}>محافظة الجهراء</MenuItem>
-                            <MenuItem value={'50'}>محافظة الفروانية</MenuItem>
-                            <MenuItem value={'60'}>
-                                محافظة مبارك الكبير
-                            </MenuItem>
+                            <MenuItem value={1}>محافظة العاصمة</MenuItem>
+                            <MenuItem value={2}>محافظة حولي</MenuItem>
+                            <MenuItem value={3}>محافظة الأحمدي</MenuItem>
+                            <MenuItem value={4}>محافظة الجهراء</MenuItem>
+                            <MenuItem value={5}>محافظة الفروانية</MenuItem>
+                            <MenuItem value={6}>محافظة مبارك الكبير</MenuItem>
                         </Select>
                     </FormControl>
                 </Grid>

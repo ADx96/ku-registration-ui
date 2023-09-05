@@ -129,13 +129,13 @@ export default function PaymentForm() {
                             label="سبب الرغبة بالتسجيل"
                             variant="standard"
                         >
-                            <MenuItem value={'1'}>
+                            <MenuItem value={1}>
                                 تعارض الوقت مع مقررات اخري
                             </MenuItem>
-                            <MenuItem value={'2'}>
+                            <MenuItem value={2}>
                                 ظروف العمل ( ارفاق من يبن ذلك )
                             </MenuItem>
-                            <MenuItem value={'3'}>سبب اخر</MenuItem>
+                            <MenuItem value={3}>سبب اخر</MenuItem>
                         </Select>
                     </FormControl>
                 </Grid>
@@ -144,7 +144,7 @@ export default function PaymentForm() {
                         required
                         onChange={handleInputData}
                         id="reason"
-                        name="reason"
+                        name="OtherReason"
                         label="اذكر السبب "
                         fullWidth
                         autoComplete="given-name"
