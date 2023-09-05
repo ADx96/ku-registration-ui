@@ -294,7 +294,7 @@ export default function Register() {
                                         type="submit"
                                         sx={{ mt: 3, ml: 1 }}
                                     >
-                                        اعتماد الطلب'
+                                        تاكيد الطلب'
                                     </Button>
                                 )}
 

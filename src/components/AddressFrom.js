@@ -113,16 +113,10 @@ export default function AddressFrom() {
                 <Grid item xs={4} sm={4}>
                     <TextField
                         required
-                        error={
-                            data.step1.credits && data.step1.credits > 14
-                                ? true
-                                : false
-                        }
-                        helperText={'عدد الوحدات ييجب ان لا يكون اكثر من ١٤'}
                         type="number"
                         id="credits"
                         name="credits"
-                        label="الوحدات"
+                        label="عدد الوحدات"
                         fullWidth
                         autoComplete="shipping address-level2"
                         variant="standard"
@@ -130,7 +124,7 @@ export default function AddressFrom() {
                 </Grid>
                 <Grid item xs={8} position={'relative'} sm={8}>
                     <Typography position={'absolute'} variant="h6" top={'50px'}>
-                        عدد الوحدات المسجلة في الفصل اقل من 14 وحدة
+                        عدد الوحدات المسجلة في الفصل
                     </Typography>
                 </Grid>
                 <Grid item xs={12} sm={6}>
@@ -170,14 +164,7 @@ export default function AddressFrom() {
                         required
                         id="finishedCredits"
                         name="finishedCredits"
-                        error={
-                            data.step1.finishedCredits &&
-                            data.step1.finishedCredits < 80
-                                ? true
-                                : false
-                        }
-                        helperText={'عدد الوحدات ييجب ان تكون ٨٠ وحدة او اكثر '}
-                        label="الوحدات المجتازة "
+                        label="عدد الوحدات المجتازة "
                         type="number"
                         fullWidth
                         autoComplete="shipping country"

@@ -26,15 +26,17 @@ export default function PaymentForm() {
     }
 
     const handleAddItem = () => {
-        setText((prevItems) => [...prevItems, inputValue])
-        setInputValue('')
-        setData((prevData) => ({
-            ...prevData,
-            step2: {
-                ...prevData.step2,
-                subjects: [...prevData.step2.subjects, inputValue],
-            },
-        }))
+        if (inputValue) {
+            setText((prevItems) => [...prevItems, inputValue])
+            setInputValue('')
+            setData((prevData) => ({
+                ...prevData,
+                step2: {
+                    ...prevData.step2,
+                    subjects: [...prevData.step2.subjects, inputValue],
+                },
+            }))
+        }
     }
 
     const handleRemoveItem = (index) => {
