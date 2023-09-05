@@ -1,5 +1,4 @@
 import React from 'react'
-import axios from 'axios'
 
 import Box from '@mui/material/Box'
 import Container from '@mui/material/Container'
@@ -16,6 +15,7 @@ import Review from './Review.js'
 import { useDataContext } from '../hooks/UseDataHook'
 import CircleSuccess from './icons/CircleSuccess'
 import '../styles/SuccessCheck.css'
+import { Instance } from '../api/Instance'
 
 const steps = ['بيانات الطالب', 'المقرر', 'تاكيد الطلب']
 
@@ -73,8 +73,8 @@ export default function Register() {
 
     const postDataAdress = async (submitData) => {
         try {
-            const { data } = await axios.post(
-                'http://localhost:1337/api/registration-adresses',
+            const { data } = await Instance.post(
+                '/registration-adresses',
                 submitData
             )
             return data.data.id
@@ -86,8 +86,8 @@ export default function Register() {
 
     const postDataSubject = async (submitData) => {
         try {
-            const { data } = await axios.post(
-                'http://localhost:1337/api/registration-subjects',
+            const { data } = await Instance.post(
+                '/registration-subjects',
                 submitData
             )
             return data.data.id
@@ -99,10 +99,7 @@ export default function Register() {
 
     const postDataRegistration = async (submitData) => {
         try {
-            const { data } = await axios.post(
-                'http://localhost:1337/api/registrations',
-                submitData
-            )
+            const { data } = await Instance.post('/registrations', submitData)
             return data
         } catch (error) {
             console.error('Error:', error)
@@ -114,10 +111,7 @@ export default function Register() {
         const formData = new FormData()
         formData.append('files', submitData)
         try {
-            const { data } = await axios.post(
-                'http://localhost:1337/api/upload',
-                formData
-            )
+            const { data } = await Instance.post('/upload', formData)
             return data[0].id
         } catch (error) {
             console.error('Error:', error)
