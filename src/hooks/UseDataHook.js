@@ -18,7 +18,7 @@ export const UseDataHookProvider = ({ children }) => {
             semester: '',
             finishedCredits: 0,
             city: '',
-            OtherReason: 'none',
+            OtherReason: '',
             block: 0,
             street: '',
             house: '',
