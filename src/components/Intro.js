@@ -27,8 +27,9 @@ const Intro = () => {
             <BackgroundWrapper src={'/assets/background.jpg'} />
             <ButtonContainer>
                 <Button
-                    onClick={() => navigate('/registration')}
-                    style={{ fontSize: '40px', borderRadius: '5px' }}
+                    onClick={() => navigate('/verification')}
+                    md={{ fontSize: '40px', borderRadius: '5px' }}
+                    sx={{ fontSize: '30px' }}
                     size="large"
                     variant="contained"
                 >

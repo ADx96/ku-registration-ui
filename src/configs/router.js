@@ -1,6 +1,7 @@
 import { Navigate, useRoutes } from 'react-router-dom'
 import IntroPage from '../pages/IntroPage'
 import RegistrationPage from '../pages/RegistrationPage'
+import DemoPage from '../pages/DemoPage'
 
 const Router = () => {
     const routes = useRoutes([
@@ -11,6 +12,10 @@ const Router = () => {
         {
             path: '/registration',
             element: <RegistrationPage />,
+        },
+        {
+            path: '/verification',
+            element: <DemoPage />,
         },
         {
             path: '*',
