@@ -9,14 +9,13 @@ import {
 import React, { useState } from 'react'
 import data from '../data/data.json'
 
-const style = {
+const style2 = {
     position: 'absolute',
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-
+    width: '100%',
     bgcolor: 'background.paper',
-    border: '2px solid #000',
     boxShadow: 24,
     p: 4,
 }
@@ -52,10 +51,11 @@ const Terms = ({ handleStart }) => {
                 aria-labelledby="keep-mounted-modal-title"
                 aria-describedby="keep-mounted-modal-description"
             >
-                <Box sx={style}>
+                <Box sx={style2}>
                     <Typography
                         id="keep-mounted-modal-title"
                         variant="h5"
+                        fontWeight={'600'}
                         component="h2"
                         textAlign={'right'}
                     >
@@ -71,7 +71,11 @@ const Terms = ({ handleStart }) => {
                         textAlign={'right'}
                     >
                         {data.TermsAndConditions.map((data, index) => (
-                            <li dir="rtl" key={index}>
+                            <li
+                                dir="rtl"
+                                style={{ marginBottom: '3px' }}
+                                key={index}
+                            >
                                 {data}
                             </li>
                         ))}

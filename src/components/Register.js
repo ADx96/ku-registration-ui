@@ -327,7 +327,7 @@ export default function Register() {
                     {start ? (
                         <Terms handleStart={handleStart} />
                     ) : (
-                        <StepsComponent />
+                        StepsComponent()
                     )}
                 </Paper>
             </Container>

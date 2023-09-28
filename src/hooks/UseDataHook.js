@@ -27,6 +27,7 @@ export const UseDataHookProvider = ({ children }) => {
             fall: yearRange,
         },
         step2: {
+            allowOther: 'yes',
             reason: '',
             OtherReason: '',
             subjects: [],
