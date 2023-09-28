@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Box from '@mui/material/Box'
 import Container from '@mui/material/Container'
 import Paper from '@mui/material/Paper'
@@ -15,6 +15,7 @@ import { useDataContext } from '../hooks/UseDataHook'
 import CircleSuccess from './icons/CircleSuccess'
 import '../styles/SuccessCheck.css'
 import { Instance } from '../api/Instance'
+import Terms from './Terms'
 
 const steps = ['بيانات الطالب', 'المقرر', 'تاكيد الطلب']
 
@@ -33,9 +34,9 @@ function getStepContent(step) {
 
 export default function Register() {
     const { data } = useDataContext()
-
-    const [activeStep, setActiveStep] = React.useState(0)
-    const [orderNum, setOrderNum] = React.useState('')
+    const [start, setStart] = useState(true)
+    const [activeStep, setActiveStep] = useState(0)
+    const [orderNum, setOrderNum] = useState('')
 
     const areObjectPropertiesNotEmptyStrings = (obj) =>
         Object.values(obj).every((value) => {
@@ -44,6 +45,10 @@ export default function Register() {
             }
             return true
         })
+
+    const handleStart = () => {
+        setStart(false)
+    }
 
     const handleNext = () => {
         setActiveStep(activeStep + 1)
@@ -230,6 +235,85 @@ export default function Register() {
         }
     }
 
+    const StepsComponent = () => {
+        return (
+            <>
+                <Stepper activeStep={activeStep} sx={{ pt: 3, pb: 5 }}>
+                    {steps.map((label) => (
+                        <Step key={label}>
+                            <StepLabel>{label}</StepLabel>
+                        </Step>
+                    ))}
+                </Stepper>
+
+                {activeStep === steps.length ? (
+                    <div style={{ direction: 'rtl' }}>
+                        <Typography
+                            fontWeight={'600'}
+                            variant="h5"
+                            gutterBottom
+                        >
+                            شكرا لطلبك
+                        </Typography>
+                        <Typography variant="h5">
+                            {`رقم طلبك هو ${orderNum} 
+                        لقد أرسلنا تأكيد طلبك عبر البريد الإلكتروني، وسوف نرسل لك تحديثًا عند طلبك `}
+                        </Typography>
+                        <CircleSuccess />
+                    </div>
+                ) : (
+                    <form>
+                        {getStepContent(activeStep)}
+                        <Box
+                            sx={{
+                                display: 'flex',
+                                justifyContent: 'flex-end',
+                            }}
+                        >
+                            {activeStep !== 0 && (
+                                <Button
+                                    onClick={handleBack}
+                                    sx={{ mt: 3, ml: 1 }}
+                                >
+                                    الرجوع
+                                </Button>
+                            )}
+                            {activeStep === 2 && (
+                                <Button
+                                    variant="contained"
+                                    onClick={handleSubmit}
+                                    disabled={
+                                        (!CheckStepOne() && activeStep === 0) ||
+                                        (!CheckStepTwo() && activeStep === 1)
+                                    }
+                                    type="submit"
+                                    sx={{ mt: 3, ml: 1 }}
+                                >
+                                    تاكيد الطلب
+                                </Button>
+                            )}
+
+                            {activeStep !== 2 && (
+                                <Button
+                                    variant="contained"
+                                    onClick={isFormComplete}
+                                    disabled={
+                                        (!CheckStepOne() && activeStep === 0) ||
+                                        (!CheckStepTwo() && activeStep === 1)
+                                    }
+                                    type="submit"
+                                    sx={{ mt: 3, ml: 1 }}
+                                >
+                                    التالي
+                                </Button>
+                            )}
+                        </Box>
+                    </form>
+                )}
+            </>
+        )
+    }
+
     return (
         <React.Fragment>
             <Container component="main" maxWidth="sm" sx={{ mb: 4 }}>
@@ -240,80 +324,10 @@ export default function Register() {
                     <Typography component="h1" variant="h4" align="center">
                         التسجيل
                     </Typography>
-                    <Stepper activeStep={activeStep} sx={{ pt: 3, pb: 5 }}>
-                        {steps.map((label) => (
-                            <Step key={label}>
-                                <StepLabel>{label}</StepLabel>
-                            </Step>
-                        ))}
-                    </Stepper>
-                    {activeStep === steps.length ? (
-                        <div style={{ direction: 'rtl' }}>
-                            <Typography
-                                fontWeight={'600'}
-                                variant="h5"
-                                gutterBottom
-                            >
-                                شكرا لطلبك
-                            </Typography>
-                            <Typography variant="h5">
-                                {`رقم طلبك هو ${orderNum} 
-                        لقد أرسلنا تأكيد طلبك عبر البريد الإلكتروني، وسوف نرسل لك تحديثًا عند طلبك `}
-                            </Typography>
-                            <CircleSuccess />
-                        </div>
+                    {start ? (
+                        <Terms handleStart={handleStart} />
                     ) : (
-                        <form>
-                            {getStepContent(activeStep)}
-                            <Box
-                                sx={{
-                                    display: 'flex',
-                                    justifyContent: 'flex-end',
-                                }}
-                            >
-                                {activeStep !== 0 && (
-                                    <Button
-                                        onClick={handleBack}
-                                        sx={{ mt: 3, ml: 1 }}
-                                    >
-                                        الرجوع
-                                    </Button>
-                                )}
-                                {activeStep === 2 && (
-                                    <Button
-                                        variant="contained"
-                                        onClick={handleSubmit}
-                                        disabled={
-                                            (!CheckStepOne() &&
-                                                activeStep === 0) ||
-                                            (!CheckStepTwo() &&
-                                                activeStep === 1)
-                                        }
-                                        type="submit"
-                                        sx={{ mt: 3, ml: 1 }}
-                                    >
-                                        تاكيد الطلب
-                                    </Button>
-                                )}
-
-                                {activeStep !== 2 && (
-                                    <Button
-                                        variant="contained"
-                                        onClick={isFormComplete}
-                                        disabled={
-                                            (!CheckStepOne() &&
-                                                activeStep === 0) ||
-                                            (!CheckStepTwo() &&
-                                                activeStep === 1)
-                                        }
-                                        type="submit"
-                                        sx={{ mt: 3, ml: 1 }}
-                                    >
-                                        التالي
-                                    </Button>
-                                )}
-                            </Box>
-                        </form>
+                        <StepsComponent />
                     )}
                 </Paper>
             </Container>
