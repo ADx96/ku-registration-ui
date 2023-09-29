@@ -35,7 +35,7 @@ function getStepContent(step) {
 export default function Register() {
     const { data } = useDataContext()
     const [start, setStart] = useState(true)
-    const [activeStep, setActiveStep] = useState(0)
+    const [activeStep, setActiveStep] = useState(2)
     const [orderNum, setOrderNum] = useState('')
 
     const areObjectPropertiesNotEmptyStrings = (obj) =>
