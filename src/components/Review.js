@@ -51,7 +51,7 @@ export default function Review() {
 
     const Step2UserCourse = [
         {
-            name: 'عدد الوحدات ييجب ان لا يكون اكثر من ١٤',
+            name: 'عدد الوحدات',
             value: data.step1.credits,
         },
         {
