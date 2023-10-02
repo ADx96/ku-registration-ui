@@ -7,6 +7,7 @@ import Grid from '@mui/material/Grid'
 import { useDataContext } from '../hooks/UseDataHook'
 import { ThemeProvider } from '@mui/material'
 import { RTL, theme } from './Rtl'
+import { getReason, getUniversity } from '../helpers/helpers'
 
 export default function Review() {
     const { data } = useDataContext()
@@ -19,6 +20,10 @@ export default function Review() {
         {
             name: 'الرقم الجامعي',
             value: data.step1.uniNumber,
+        },
+        {
+            name: 'الكلية',
+            value: getUniversity(data.step1.uniName),
         },
         {
             name: 'البريد الالكتروني الجامعي',
@@ -64,11 +69,9 @@ export default function Review() {
         },
         {
             name: 'سبب الرغبة بالتسجيل',
-            value: data.step2.reason,
+            value: getReason(data.step2.reason),
         },
     ]
-
-    console.log(data.step2.subjects)
 
     return (
         <RTL>

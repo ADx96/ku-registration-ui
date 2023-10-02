@@ -16,6 +16,7 @@ import CircleSuccess from './icons/CircleSuccess'
 import '../styles/SuccessCheck.css'
 import { Instance } from '../api/Instance'
 import Terms from './Terms'
+import { getGovernor, getReason, getSemester } from '../helpers/helpers'
 
 const steps = ['بيانات الطالب', 'المقرر', 'تاكيد الطلب']
 
@@ -118,59 +119,6 @@ export default function Register() {
         } catch (error) {
             console.error('Error:', error)
             // Handle the error here
-        }
-    }
-
-    function getSemester(data) {
-        if (!data) {
-            return
-        }
-        switch (data) {
-            case 1:
-                return 'الأول'
-            case 2:
-                return 'الثاني'
-            case 3:
-                return 'الصيفي'
-            default:
-                throw new Error('Unknown step')
-        }
-    }
-
-    function getReason(data) {
-        if (!data) {
-            return
-        }
-        switch (data) {
-            case 1:
-                return 'تعارض الوقت مع مقررات اخري'
-            case 2:
-                return 'ظروف العمل (ارفاق من يبن ذلك)'
-            case 3:
-                return 'سبب اخر'
-            default:
-                throw new Error('Unknown step')
-        }
-    }
-    function getGovernor(data) {
-        if (!data) {
-            return
-        }
-        switch (data) {
-            case 1:
-                return 'محافظة العاصمة'
-            case 2:
-                return 'محافظة حولي'
-            case 3:
-                return 'محافظة الأحمدي'
-            case 4:
-                return 'محافظة الجهراء'
-            case 5:
-                return 'محافظة الفروانية'
-            case 6:
-                return 'محافظة مبارك الكبير'
-            default:
-                throw new Error('Unknown step')
         }
     }
 

@@ -13,6 +13,7 @@ export const UseDataHookProvider = ({ children }) => {
             uniNumber: '',
             name: '',
             email: '',
+            uniName: '',
             mobile: '',
             credits: 0,
             semester: '',

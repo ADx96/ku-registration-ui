@@ -105,6 +105,64 @@ export default function AddressFrom() {
                         </Grid>
                         <Grid item xs={12} sm={6}>
                             <Typography color="black" variant="body2">
+                                للفصل
+                            </Typography>
+                            <FormControl
+                                required
+                                variant="standard"
+                                fullWidth
+                                sx={{ m: 1 }}
+                            >
+                                <InputLabel id="demo-simple-select-standard-label">
+                                    الكلية
+                                </InputLabel>
+                                <Select
+                                    onChange={handleInputChange}
+                                    labelId="demo-simple-select-standard-label"
+                                    id="semester"
+                                    name="uniName"
+                                    value={data.step1.uniName}
+                                    fullWidth
+                                >
+                                    <MenuItem value={1}>
+                                        كلية الشريعة و الدراسات الاسلامية
+                                    </MenuItem>
+                                    <MenuItem value={2}>كلية الاداب</MenuItem>
+                                    <MenuItem value={3}>كلية التربية</MenuItem>
+                                    <MenuItem value={4}>كلية الحقوق</MenuItem>
+                                    <MenuItem value={5}>
+                                        كلية الدراسات العليا
+                                    </MenuItem>
+                                    <MenuItem value={6}>
+                                        كلية الصحة العامة
+                                    </MenuItem>
+                                    <MenuItem value={7}>كلية الصيدلة</MenuItem>
+                                    <MenuItem value={8}>كلية الطب</MenuItem>
+                                    <MenuItem value={9}> كلية العلوم</MenuItem>
+                                    <MenuItem value={10}>
+                                        كلية العلوم الاجتماعية
+                                    </MenuItem>
+                                    <MenuItem value={11}>
+                                        كلية العلوم الحياتية
+                                    </MenuItem>
+                                    <MenuItem value={12}>
+                                        كلية العلوم الإدارية
+                                    </MenuItem>
+                                    <MenuItem value={13}>
+                                        كلية العلوم الطبية المساعدة
+                                    </MenuItem>
+                                    <MenuItem value={14}>كلية العمارة</MenuItem>
+                                    <MenuItem value={15}>
+                                        كلية الهندسة و البترول
+                                    </MenuItem>
+                                    <MenuItem value={16}>
+                                        كلية طب الأسنان
+                                    </MenuItem>
+                                </Select>
+                            </FormControl>
+                        </Grid>
+                        <Grid item xs={12} sm={6}>
+                            <Typography color="black" variant="body2">
                                 (رقم فعال وتأكد من ادخال الرقم بشكل صحيح ويكون
                                 الادخال بالأرقام الانجليزية) رقم الهاتف النقال
                                 اختياري وليس إلزاميا
