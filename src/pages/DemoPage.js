@@ -22,17 +22,16 @@ const DemoPage = () => {
     const [alert, showAlert] = useState(false)
     const navigate = useNavigate()
     const handleClick = (e) => {
-        console.log(data)
-        e.preventDefault()
-
         if (
-            data.email === 'abdulrazaq.alajeel@ku.edu.kw' &&
+            data.email === 'abdulrazag.alajeel@ku.edu.kw' &&
             data.password === 'Kuwait2000'
         ) {
             navigate('/registration')
         } else {
             showAlert(true)
         }
+
+        e.preventDefault()
     }
 
     const handleInputChange = (e) => {
